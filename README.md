@@ -1,7 +1,7 @@
-{{ role_name }}
+cdriehuys.django-app
 =========
 
-Role description here.
+Configure a django app using Gunicorn.
 
 Requirements
 ------------
@@ -25,7 +25,7 @@ To run the role, include it as follows.
 
     - hosts: all
       roles:
-         - {{ role_name }}
+         - cdriehuys.django-app
 
 License
 -------
