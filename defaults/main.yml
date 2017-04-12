@@ -1,2 +1,7 @@
 ---
 apt_cache_time: 3600
+
+app_repo: ''
+app_repo_version: master
+
+django_project: /opt/django-project

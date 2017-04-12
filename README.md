@@ -15,6 +15,13 @@ The following are the variables used by the role and their defaults.
 
 ```YAML
 apt_cache_time: 3600
+
+# Version Control Settings
+app_repo: ''                # The repo to pull source code from
+app_repo_version: master    # The tag or branch to pull down
+
+# Django Project Settings
+django_project: /opt/django-project     # Path to django project
 ```
 
 Dependencies

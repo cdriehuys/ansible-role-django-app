@@ -5,3 +5,9 @@
     state: present
     update_cache: yes
     cache_valid_time: "{{ apt_cache_time }}"
+
+- name: Pull source code
+  git:
+    repo: "{{ app_repo }}"
+    dest: "{{ django_project }}"
+    version: "{{ app_repo_version }}"
