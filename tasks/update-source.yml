@@ -1,0 +1,7 @@
+---
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+    cache_valid_time: "{{ apt_cache_time }}"

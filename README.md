@@ -13,6 +13,10 @@ Role Variables
 
 The following are the variables used by the role and their defaults.
 
+```YAML
+apt_cache_time: 3600
+```
+
 Dependencies
 ------------
 

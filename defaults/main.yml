@@ -1,2 +1,2 @@
 ---
-# Insert default variables here
+apt_cache_time: 3600
