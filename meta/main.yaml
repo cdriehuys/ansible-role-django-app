@@ -15,4 +15,5 @@ galaxy_info:
     - django
     - gunicorn
 
-dependencies: []
+dependencies:
+  - cdriehuys.virtualenv

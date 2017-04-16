@@ -29,6 +29,11 @@ before_install:
     ${run_opts} cdriehuys/docker-${distro}-ansible:latest
     "${init}" > "${container_id}"
 
+  # Install role dependencies
+  - >
+    docker exec --tty "$(cat ${container_id})" env TERM=xterm
+    ansible-galaxy install cdriehuys.virtualenv
+
 # Start docker container and run tests
 script:
   # Test role syntax
