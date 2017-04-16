@@ -10,6 +10,10 @@ docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro \
 cdriehuys/docker-ubuntu1604-ansible:latest \
 /lib/systemd/systemd > "${container_id}"
 
+# Install dependencies
+docker exec --tty "$(cat ${container_id})" env TERM=xterm \
+ansible-galaxy install cdriehuys.virtualenv
+
 # Test role syntax
 docker exec --tty "$(cat ${container_id})" env TERM=xterm \
 ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check
