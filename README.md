@@ -27,7 +27,11 @@ django_project: /opt/django-project     # Path to django project
 Dependencies
 ------------
 
-None.
+Depends on the following roles:
+
+```YAML
+- cdriehuys.virtualenv
+```
 
 Example Playbook
 ----------------
