@@ -25,3 +25,14 @@
   template:
     src: gunicorn.socket.j2
     dest: "{{ gunicorn_socket_conf }}"
+
+- name: Upload gunicorn tempfile configuration
+  template:
+    src: gunicorn-tempfile.conf.j2
+    dest: "{{ gunicorn_tempfile_conf }}"
+
+- name: Start and enable gunicorn
+  service:
+    name: gunicorn.socket
+    enabled: yes
+    state: started
