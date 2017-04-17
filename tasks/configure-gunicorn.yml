@@ -1,3 +1,8 @@
+- name: Install gunicorn
+  pip:
+    name: "{{ gunicorn_version }}"
+    virtualenv: "{{ venv }}"
+
 - name: Create primary gunicorn group
   group:
     name: "{{ gunicorn_group_primary }}"

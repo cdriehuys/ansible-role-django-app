@@ -11,3 +11,14 @@
     repo: "{{ app_repo }}"
     dest: "{{ django_project }}"
     version: "{{ app_repo_version }}"
+
+- name: Stat requirements file
+  stat:
+    path: "{{ django_requirements }}"
+  register: requirements
+
+- name: Install requirements
+  pip:
+    requirements: "{{ django_requirements }}"
+    virtualenv: "{{ venv }}"
+  when: requirements.stat.readable is defined and requirements.stat.readable
