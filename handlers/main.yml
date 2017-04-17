@@ -1,2 +1,19 @@
 ---
-# Handlers for role
+- name: reload daemons
+  systemd:
+    daemon_reload: yes
+    # We must specify a name and state
+    name: gunicorn.service
+    enabled: yes
+
+- name: stop gunicorn service
+  service:
+    name: gunicorn.service
+    state: stopped
+  listen: reload gunicorn
+
+- name: restart gunicorn socket
+  service:
+    name: gunicorn.socket
+    state: restarted
+  listen: reload gunicorn

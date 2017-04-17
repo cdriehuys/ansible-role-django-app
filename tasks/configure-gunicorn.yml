@@ -2,6 +2,8 @@
   pip:
     name: "{{ gunicorn_version }}"
     virtualenv: "{{ venv }}"
+  notify:
+    - reload gunicorn
 
 - name: Create primary gunicorn group
   group:
@@ -25,16 +27,24 @@
   template:
     src: gunicorn.service.j2
     dest: "{{ gunicorn_service_conf }}"
+  notify:
+    - reload daemons
+    - reload gunicorn
 
 - name: Upload gunicorn socket configuration
   template:
     src: gunicorn.socket.j2
     dest: "{{ gunicorn_socket_conf }}"
+  notify:
+    - reload daemons
+    - reload gunicorn
 
 - name: Upload gunicorn tempfile configuration
   template:
     src: gunicorn-tempfile.conf.j2
     dest: "{{ gunicorn_tempfile_conf }}"
+  notify:
+    - reload gunicorn
 
 - name: Start and enable gunicorn
   service:

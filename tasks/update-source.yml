@@ -11,6 +11,8 @@
     repo: "{{ app_repo }}"
     dest: "{{ django_project }}"
     version: "{{ app_repo_version }}"
+  notify:
+    - reload gunicorn
 
 - name: Stat requirements file
   stat:
@@ -22,3 +24,5 @@
     requirements: "{{ django_requirements }}"
     virtualenv: "{{ venv }}"
   when: requirements.stat.readable is defined and requirements.stat.readable
+  notify:
+    - reload gunicorn
