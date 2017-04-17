@@ -16,17 +16,31 @@ The following are the variables used by the role and their defaults.
 ```YAML
 apt_cache_time: 3600
 
+# General App Settings
+app_name: app           # Human readable name of the app
+app_package: app        # Name of the app python package
+
 # Version Control Settings
 app_repo: ''                # The repo to pull source code from
 app_repo_version: master    # The tag or branch to pull down
 
 # Django Project Settings
-django_project: /opt/django-project     # Path to django project
+django_project: /opt/{{ app_name }}     # Path to django project
 
 # Gunicorn Settings
 gunicorn_user: gunicorn
-gunicorn_group_primary: ''
+gunicorn_group_primary: ''     # Name of gunicorn user's primary group
 gunicorn_groups: []
+
+gunicorn_service_conf: /etc/systemd/system/gunicorn.service
+
+gunicorn_bin: "{{ venv }}/bin/gunicorn"
+gunicorn_socket: "unix:/run/gunicorn/socket"
+gunicorn_working_directory: "{{ django_project }}//{{ app_package }}/{{ app_package }}"
+gunicorn_wsgi_app: wsgi:application
+
+gunicorn_runtime_directory: gunicorn    # Relative to /run
+gunicorn_pid: /run/{{ gunicorn_runtime_directory }}/pid
 ```
 
 Dependencies

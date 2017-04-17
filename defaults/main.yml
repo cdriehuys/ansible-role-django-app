@@ -1,11 +1,24 @@
 ---
 apt_cache_time: 3600
 
+app_name: app
+app_package: app
+
 app_repo: ''
 app_repo_version: master
 
-django_project: /opt/django-project
+django_project: /opt/{{ app_name }}
 
 gunicorn_user: gunicorn
 gunicorn_group_primary: ''
 gunicorn_groups: []
+
+gunicorn_service_conf: /etc/systemd/system/gunicorn.service
+
+gunicorn_bin: "{{ venv }}/bin/gunicorn"
+gunicorn_socket: "unix:/run/gunicorn/socket"
+gunicorn_working_directory: "{{ django_project }}//{{ app_package }}/{{ app_package }}"
+gunicorn_wsgi_app: wsgi:application
+
+gunicorn_runtime_directory: gunicorn    # Relative to /run
+gunicorn_pid: /run/{{ gunicorn_runtime_directory }}/pid

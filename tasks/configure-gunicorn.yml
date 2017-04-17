@@ -15,3 +15,8 @@
     group: "{{ gunicorn_group_primary or omit }}"
     groups: "{{ gunicorn_groups | join(',') or omit }}"
     createhome: no
+
+- name: Upload gunicorn service configuration
+  template:
+    src: gunicorn.service.j2
+    dest: "{{ gunicorn_service_conf }}"
