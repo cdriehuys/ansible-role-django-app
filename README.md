@@ -22,6 +22,11 @@ app_repo_version: master    # The tag or branch to pull down
 
 # Django Project Settings
 django_project: /opt/django-project     # Path to django project
+
+# Gunicorn Settings
+gunicorn_user: gunicorn
+gunicorn_group_primary: ''
+gunicorn_groups: []
 ```
 
 Dependencies

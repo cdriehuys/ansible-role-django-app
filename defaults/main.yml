@@ -5,3 +5,7 @@ app_repo: ''
 app_repo_version: master
 
 django_project: /opt/django-project
+
+gunicorn_user: gunicorn
+gunicorn_group_primary: ''
+gunicorn_groups: []
