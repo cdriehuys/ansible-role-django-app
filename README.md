@@ -35,7 +35,8 @@ gunicorn_groups: []
 gunicorn_service_conf: /etc/systemd/system/gunicorn.service
 
 gunicorn_bin: "{{ venv }}/bin/gunicorn"
-gunicorn_socket: "unix:/run/gunicorn/socket"
+gunicorn_socket: "/run/gunicon/socket"
+gunicorn_socket_unix: "unix:{{ gunicorn_socket }}"
 gunicorn_working_directory: "{{ django_project }}//{{ app_package }}/{{ app_package }}"
 gunicorn_wsgi_app: wsgi:application
 

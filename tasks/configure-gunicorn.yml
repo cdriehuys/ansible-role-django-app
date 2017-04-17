@@ -20,3 +20,8 @@
   template:
     src: gunicorn.service.j2
     dest: "{{ gunicorn_service_conf }}"
+
+- name: Upload gunicorn socket configuration
+  template:
+    src: gunicorn.socket.j2
+    dest: "{{ gunicorn_socket_conf }}"

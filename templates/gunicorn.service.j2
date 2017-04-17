@@ -10,7 +10,7 @@ User={{ gunicorn_user }}
 RuntimeDirectory={{ gunicorn_runtime_directory }}
 WorkingDirectory={{ gunicorn_working_directory }}
 ExecStart={{ gunicorn_bin }} --pid {{ gunicorn_pid }}   \
-          --bind {{ gunicorn_socket }} {{ gunicorn_wsgi_app }}
+          --bind {{ gunicorn_socket_unix }} {{ gunicorn_wsgi_app }}
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 PrivateTmp=true
