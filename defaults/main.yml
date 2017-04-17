@@ -17,7 +17,7 @@ gunicorn_group_primary: ''
 gunicorn_groups: []
 
 venv_owner: "{{ gunicorn_user }}"
-venv_group: "{{ gunicorn_group_primary or omit }}"
+venv_group: "{{ gunicorn_group_primary or gunicorn_user }}"
 
 gunicorn_service_conf: /etc/systemd/system/gunicorn.service
 gunicorn_socket_conf: /etc/systemd/system/gunicorn.socket
