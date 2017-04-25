@@ -1,2 +1,3 @@
 ---
 - include: update-source.yml
+- include: configure-gunicorn.yml
