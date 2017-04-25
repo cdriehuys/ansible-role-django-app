@@ -26,6 +26,7 @@ app_repo_version: master    # The tag or branch to pull down
 
 # Django Project Settings
 django_project: /opt/{{ app_name }}     # Path to django project
+django_app_dir: "{{ django_project }}/{{ app_package }}"
 django_requirements: "{{ django_project }}/requirements.txt"
 
 # Gunicorn Settings
@@ -42,7 +43,7 @@ gunicorn_tempfile_conf: /etc/tmpfiles.d/gunicorn.conf
 gunicorn_bin: "{{ venv }}/bin/gunicorn"
 gunicorn_socket: "/run/gunicon/socket"
 gunicorn_socket_unix: "unix:{{ gunicorn_socket }}"
-gunicorn_working_directory: "{{ django_project }}/{{ app_package }}"
+gunicorn_working_directory: "{{ django_app_dir }}"
 gunicorn_wsgi_app: "{{ app_package }}.wsgi:application"
 
 gunicorn_runtime_directory: gunicorn    # Relative to /run

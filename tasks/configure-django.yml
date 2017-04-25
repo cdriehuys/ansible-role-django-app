@@ -1,0 +1,7 @@
+- name: Run migrations
+  django_manage:
+    command: migrate
+    app_path: "{{ django_app_dir }}"
+    virtualenv: "{{ venv }}"
+  notify:
+    - reload gunicorn
