@@ -17,7 +17,8 @@
     createhome: no
 
 - name: Install gunicorn
-  become_user: gunicorn
+  become: yes
+  become_user: "{{ gunicorn_user }}"
   pip:
     name: "{{ gunicorn_version }}"
     virtualenv: "{{ venv }}"
