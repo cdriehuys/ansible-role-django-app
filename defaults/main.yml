@@ -11,6 +11,8 @@ django_project: /opt/{{ app_name }}
 django_app_dir: "{{ django_project }}/{{ app_package }}"
 django_requirements: "{{ django_project }}/requirements.txt"
 
+django_manage_commands: []
+
 gunicorn_version: gunicorn
 
 gunicorn_user: gunicorn

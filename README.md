@@ -29,6 +29,10 @@ django_project: /opt/{{ app_name }}     # Path to django project
 django_app_dir: "{{ django_project }}/{{ app_package }}"
 django_requirements: "{{ django_project }}/requirements.txt"
 
+# A list of additional commands to run. Entries should be manage.py
+# commands with their arguments like 'collectstatic --no-input'.
+django_manage_commands: []
+
 # Gunicorn Settings
 gunicorn_version: gunicorn     # Can specify another version like 'gunicorn >= 19.7'
 
