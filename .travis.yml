@@ -62,5 +62,13 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
+  # Make sure gunicorn is responsive
+  - >
+    docker exec --tty "$(cat ${container_id})" env TERM=xterm
+    curl --unix-socket /run/gunicorn/socket http://localhost
+    | grep -q 'Hello, World'
+    && (echo 'Gunicorn ping: pass' && exit 0)
+    || (echo 'Gunicorn ping: fail' && exit 1)
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

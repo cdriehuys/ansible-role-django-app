@@ -36,5 +36,9 @@ tail ${idempotence} \
 && (echo 'Idempotence test: pass' && exit 0) \
 || (echo 'Idempotence test: fail' && exit 1)
 
+# Make sure gunicorn is accessible
+docker exec --tty "$(cat ${container_id})" env TERM=xterm \
+curl --unix-socket /run/gunicorn/socket http://localhost
+
 # Kill containers
 docker kill "$(cat ${container_id})"
