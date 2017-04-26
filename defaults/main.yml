@@ -9,9 +9,11 @@ app_repo_version: master
 
 django_project: /opt/{{ app_name }}
 django_app_dir: "{{ django_project }}/{{ app_package }}"
+django_local_settings: "{{ django_app_dir }}/{{ app_package }}/local_settings.py"
 django_requirements: "{{ django_project }}/requirements.txt"
 
 django_manage_commands: []
+django_project_settings: {}
 
 gunicorn_version: gunicorn
 
