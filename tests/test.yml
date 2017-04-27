@@ -9,6 +9,9 @@
     # Simple django app for testing
     app_repo: 'https://github.com/cdriehuys/django-hello-world'
     app_package: hello_world
+    django_project_settings:
+      SECRET_KEY: "'secret'"
+      DEBUG: True
 
   roles:
     - role_under_test

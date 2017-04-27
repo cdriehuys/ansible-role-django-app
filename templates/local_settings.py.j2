@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+
+{% for setting in django_project_settings %}{{ setting }} = {{ django_project_settings[setting] }}
+{% endfor %}

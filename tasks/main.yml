@@ -1,3 +1,4 @@
 ---
 - include: update-source.yml
 - include: configure-gunicorn.yml
+- include: configure-django.yml
