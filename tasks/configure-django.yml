@@ -1,3 +1,12 @@
+- name: Create log directory
+  file:
+    path: "{{ django_log_file | dirname }}"
+    state: directory
+    owner: "{{ gunicorn_user }}"
+    group: "{{ gunicorn_group_primary or gunicorn_user }}"
+    mode: 0755
+  when: django_log_file != ''
+
 - name: Upload local settings
   template:
     src: local_settings.py.j2
