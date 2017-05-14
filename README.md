@@ -24,6 +24,11 @@ app_package: app        # Name of the app python package
 app_repo: ''                # The repo to pull source code from
 app_repo_version: master    # The tag or branch to pull down
 
+# Additional Packages
+#
+# These are additional packages required for the application to run
+app_required_packages: []
+
 # Django Project Settings
 django_project: /opt/{{ app_name }}     # Path to django project
 django_app_dir: "{{ django_project }}/{{ app_package }}"

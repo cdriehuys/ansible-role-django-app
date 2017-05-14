@@ -1,0 +1,6 @@
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: "{{ apt_cache_time }}"
+  with_items: "{{ app_required_packages }}"

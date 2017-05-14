@@ -7,6 +7,8 @@ app_package: app
 app_repo: ''
 app_repo_version: master
 
+app_required_packages: []
+
 django_project: /opt/{{ app_name }}
 django_app_dir: "{{ django_project }}/{{ app_package }}"
 django_local_settings: "{{ django_app_dir }}/{{ app_package }}/local_settings.py"
