@@ -11,6 +11,12 @@ None.
 Role Variables
 --------------
 
+In order for the role to run, the following variables **Must** be set.
+
+```YAML
+django_secret_key: your secret key here
+```
+
 The following are the variables used by the role and their defaults.
 
 ```YAML
@@ -29,10 +35,25 @@ app_repo_version: master    # The tag or branch to pull down
 # These are additional packages required for the application to run
 app_required_packages: []
 
-# Django Project Settings
+# Django Project Configuration
 django_project: /opt/{{ app_name }}     # Path to django project
 django_app_dir: "{{ django_project }}/{{ app_package }}"
 django_requirements: "{{ django_project }}/requirements.txt"
+
+# Django Project Settings
+django_log_file: /var/log/{{ app_name }}/django.log
+
+django_admins: []
+django_allowed_hosts: ["{{ inventory_hostname }}"]
+django_databases: {}
+django_debug: false
+django_logging: {}
+django_media_root: /var/www/{{ inventory_hostname }}/media
+django_static_root: /var/www/{{ inventory_hostname }}/static
+
+# Any additional settings can be defined in this dictionary
+django_project_settings: {}
+
 
 # A list of additional commands to run. Entries should be manage.py
 # commands with their arguments like 'collectstatic --no-input'.
