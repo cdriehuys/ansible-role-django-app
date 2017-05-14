@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Chathan Driehuys
-  description: Role description here.
+  description: Configure a django app using Gunicorn.
   license: MIT
 
   min_ansible_version: 1.2
@@ -11,6 +11,9 @@ galaxy_info:
       versions:
         - xenial
 
-  galaxy_tags: []
+  galaxy_tags:
+    - django
+    - gunicorn
 
-dependencies: []
+dependencies:
+  - cdriehuys.virtualenv

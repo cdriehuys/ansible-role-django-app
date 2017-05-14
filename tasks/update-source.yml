@@ -1,0 +1,30 @@
+---
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+    cache_valid_time: "{{ apt_cache_time }}"
+
+- name: Pull source code
+  git:
+    repo: "{{ app_repo }}"
+    dest: "{{ django_project }}"
+    version: "{{ app_repo_version }}"
+  notify:
+    - reload gunicorn
+
+- name: Stat requirements file
+  stat:
+    path: "{{ django_requirements }}"
+  register: requirements
+
+- name: Install requirements
+  become: yes
+  become_user: "{{ gunicorn_user }}"
+  pip:
+    requirements: "{{ django_requirements }}"
+    virtualenv: "{{ venv }}"
+  when: requirements.stat.readable is defined and requirements.stat.readable
+  notify:
+    - reload gunicorn

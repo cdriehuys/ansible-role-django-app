@@ -1,0 +1,55 @@
+- name: Create primary gunicorn group
+  group:
+    name: "{{ gunicorn_group_primary }}"
+  when: gunicorn_group_primary != ''
+
+- name: Create other groups for gunicorn user
+  group:
+    name: "{{ item }}"
+  with_items: "{{ gunicorn_groups }}"
+  when: gunicorn_groups != []
+
+- name: Create gunicorn user
+  user:
+    name: "{{ gunicorn_user }}"
+    group: "{{ gunicorn_group_primary or omit }}"
+    groups: "{{ gunicorn_groups | join(',') or omit }}"
+    createhome: no
+
+- name: Install gunicorn
+  become: yes
+  become_user: "{{ gunicorn_user }}"
+  pip:
+    name: "{{ gunicorn_version }}"
+    virtualenv: "{{ venv }}"
+  notify:
+    - reload gunicorn
+
+- name: Upload gunicorn service configuration
+  template:
+    src: gunicorn.service.j2
+    dest: "{{ gunicorn_service_conf }}"
+  notify:
+    - reload daemons
+    - reload gunicorn
+
+- name: Upload gunicorn socket configuration
+  template:
+    src: gunicorn.socket.j2
+    dest: "{{ gunicorn_socket_conf }}"
+  notify:
+    - reload daemons
+    - reload gunicorn
+
+- name: Upload gunicorn tempfile configuration
+  template:
+    src: gunicorn-tempfile.conf.j2
+    dest: "{{ gunicorn_tempfile_conf }}"
+  notify:
+    - reload gunicorn
+
+- name: Start and enable gunicorn
+  service:
+    name: gunicorn.socket
+    enabled: yes
+    state: started

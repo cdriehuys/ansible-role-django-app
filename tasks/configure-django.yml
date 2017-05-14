@@ -1,0 +1,30 @@
+- name: Create log directory
+  file:
+    path: "{{ django_log_file | dirname }}"
+    state: directory
+    owner: "{{ gunicorn_user }}"
+    group: "{{ gunicorn_group_primary or gunicorn_user }}"
+    mode: 0755
+  when: django_log_file != ''
+
+- name: Upload local settings
+  template:
+    src: local_settings.py.j2
+    dest: "{{ django_local_settings }}"
+  notify:
+    - reload gunicorn
+
+- name: Run migrations
+  django_manage:
+    command: migrate
+    app_path: "{{ django_app_dir }}"
+    virtualenv: "{{ venv }}"
+  notify:
+    - reload gunicorn
+
+- name: Run additional manage.py tasks
+  django_manage:
+    command: "{{ item }}"
+    app_path: "{{ django_app_dir }}"
+    virtualenv: "{{ venv }}"
+  with_items: "{{ django_manage_commands }}"
