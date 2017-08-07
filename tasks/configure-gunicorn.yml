@@ -1,15 +1,18 @@
 - name: Create primary gunicorn group
+  become: yes
   group:
     name: "{{ gunicorn_group_primary }}"
   when: gunicorn_group_primary != ''
 
 - name: Create other groups for gunicorn user
+  become: yes
   group:
     name: "{{ item }}"
   with_items: "{{ gunicorn_groups }}"
   when: gunicorn_groups != []
 
 - name: Create gunicorn user
+  become: yes
   user:
     name: "{{ gunicorn_user }}"
     group: "{{ gunicorn_group_primary or omit }}"
@@ -26,6 +29,7 @@
     - reload gunicorn
 
 - name: Upload gunicorn service configuration
+  become: yes
   template:
     src: gunicorn.service.j2
     dest: "{{ gunicorn_service_conf }}"
@@ -34,6 +38,7 @@
     - reload gunicorn
 
 - name: Upload gunicorn socket configuration
+  become: yes
   template:
     src: gunicorn.socket.j2
     dest: "{{ gunicorn_socket_conf }}"
@@ -42,6 +47,7 @@
     - reload gunicorn
 
 - name: Upload gunicorn tempfile configuration
+  become: yes
   template:
     src: gunicorn-tempfile.conf.j2
     dest: "{{ gunicorn_tempfile_conf }}"
@@ -49,6 +55,7 @@
     - reload gunicorn
 
 - name: Start and enable gunicorn
+  become: yes
   service:
     name: gunicorn.socket
     enabled: yes

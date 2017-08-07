@@ -1,4 +1,5 @@
 - name: Create log directory
+  become: yes
   file:
     path: "{{ django_log_file | dirname }}"
     state: directory
