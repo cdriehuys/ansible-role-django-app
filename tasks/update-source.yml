@@ -12,6 +12,7 @@
     repo: "{{ app_repo }}"
     dest: "{{ django_project }}"
     version: "{{ app_repo_version }}"
+    depth: 1
   notify:
     - reload gunicorn
 
