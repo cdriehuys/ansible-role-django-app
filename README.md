@@ -66,6 +66,9 @@ gunicorn_user: gunicorn
 gunicorn_group_primary: ''     # Name of gunicorn user's primary group
 gunicorn_groups: []
 
+# Dictionary containing environment variables to launch gunicorn with
+gunicorn_environment: {}
+
 gunicorn_service_conf: /etc/systemd/system/gunicorn.service
 gunicorn_socket_conf: /etc/systemd/system/gunicorn.socket
 gunicorn_tempfile_conf: /etc/tmpfiles.d/gunicorn.conf

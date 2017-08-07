@@ -7,6 +7,8 @@ After=network.target
 PIDFile={{ gunicorn_pid }}
 User={{ gunicorn_user }}
 {% if gunicorn_group_primary %}Group={{ gunicorn_group_primary }}{% endif %}
+{% for env_key in gunicorn_environment %}Environment={{ env_key }}={{ gunicorn_environment[env_key] }}
+{% endfor %}
 RuntimeDirectory={{ gunicorn_runtime_directory }}
 WorkingDirectory={{ gunicorn_working_directory }}
 ExecStart={{ gunicorn_bin }} --pid {{ gunicorn_pid }}   \
