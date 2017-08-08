@@ -1,16 +1,19 @@
 - name: Create log directory
+  become: yes
   file:
     path: "{{ django_log_file | dirname }}"
     state: directory
     owner: "{{ gunicorn_user }}"
-    group: "{{ gunicorn_group_primary or gunicorn_user }}"
     mode: 0755
+    recurse: yes
   when: django_log_file != ''
 
 - name: Upload local settings
   template:
     src: local_settings.py.j2
     dest: "{{ django_local_settings }}"
+    owner: "{{ gunicorn_user }}"
+    mode: 0400
   notify:
     - reload gunicorn
 
