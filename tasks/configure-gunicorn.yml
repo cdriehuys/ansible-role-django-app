@@ -33,6 +33,8 @@
   template:
     src: gunicorn.service.j2
     dest: "{{ gunicorn_service_conf }}"
+    owner: root
+    mode: 0644
   notify:
     - reload daemons
     - reload gunicorn
@@ -42,6 +44,8 @@
   template:
     src: gunicorn.socket.j2
     dest: "{{ gunicorn_socket_conf }}"
+    owner: root
+    mode: 0644
   notify:
     - reload daemons
     - reload gunicorn
@@ -51,6 +55,8 @@
   template:
     src: gunicorn-tempfile.conf.j2
     dest: "{{ gunicorn_tempfile_conf }}"
+    owner: root
+    mode: 0644
   notify:
     - reload gunicorn
 
