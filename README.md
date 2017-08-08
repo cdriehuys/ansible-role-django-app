@@ -90,6 +90,9 @@ app_repo_version: master
 # This is a list of system packages that must be installed in order for
 # your project to run.
 app_required_packages: []
+
+# The Django settings file to use.
+django_settings_module: "{{ app_package }}.settings"
 ```
 
 ### Shared
