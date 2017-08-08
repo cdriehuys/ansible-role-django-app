@@ -1,5 +1,7 @@
 # cdriehuys.django-app
 
+[![Travis](https://img.shields.io/travis/cdriehuys/ansible-role-django-app.svg)](https://travis-ci.org/cdriehuys/ansible-role-django-app)
+
 Ansible role to serve a Django application with gunicorn.
 
 
@@ -9,7 +11,7 @@ Ansible role to serve a Django application with gunicorn.
 ## Table of Contents
 
 * [Requirements](#requirements)
-* [Role Variable](#role-variables)
+* [Role Variables](#role-variables)
     * [Required](#required)
     * [Commonly Used](#commonly-used)
     * [Shared](#shared)
