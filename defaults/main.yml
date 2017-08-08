@@ -4,7 +4,6 @@ apt_cache_time: 3600
 app_name: app
 app_package: app
 
-app_repo: ''
 app_repo_version: master
 
 app_required_packages: []
@@ -19,13 +18,9 @@ django_manage_commands: []
 # Django Project Settings
 django_log_file: /var/log/{{ app_name }}/django.log
 
-django_admins: []
-django_allowed_hosts: ["{{ inventory_hostname }}"]
 django_databases: {}
-django_debug: false
 django_logging: {}
 django_media_root: /var/www/{{ inventory_hostname }}/media
-# django_secret_key: Intentionally undefined
 django_static_root: /var/www/{{ inventory_hostname }}/static
 
 django_project_settings: {}
@@ -33,11 +28,7 @@ django_project_settings: {}
 gunicorn_version: gunicorn
 
 gunicorn_user: gunicorn
-gunicorn_group_primary: ''
-gunicorn_groups: []
-
 venv_owner: "{{ gunicorn_user }}"
-venv_group: "{{ gunicorn_group_primary or gunicorn_user }}"
 
 gunicorn_environment: {}
 

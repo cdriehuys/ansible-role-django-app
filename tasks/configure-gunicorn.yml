@@ -1,22 +1,7 @@
-- name: Create primary gunicorn group
-  become: yes
-  group:
-    name: "{{ gunicorn_group_primary }}"
-  when: gunicorn_group_primary != ''
-
-- name: Create other groups for gunicorn user
-  become: yes
-  group:
-    name: "{{ item }}"
-  with_items: "{{ gunicorn_groups }}"
-  when: gunicorn_groups != []
-
 - name: Create gunicorn user
   become: yes
   user:
     name: "{{ gunicorn_user }}"
-    group: "{{ gunicorn_group_primary or omit }}"
-    groups: "{{ gunicorn_groups | join(',') or omit }}"
     createhome: no
 
 - name: Install gunicorn

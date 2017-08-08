@@ -43,10 +43,7 @@ django_requirements: "{{ django_project }}/requirements.txt"
 # Django Project Settings
 django_log_file: /var/log/{{ app_name }}/django.log
 
-django_admins: []
-django_allowed_hosts: ["{{ inventory_hostname }}"]
 django_databases: {}
-django_debug: false
 django_logging: {}
 django_media_root: /var/www/{{ inventory_hostname }}/media
 django_static_root: /var/www/{{ inventory_hostname }}/static
@@ -63,8 +60,6 @@ django_manage_commands: []
 gunicorn_version: gunicorn     # Can specify another version like 'gunicorn >= 19.7'
 
 gunicorn_user: gunicorn
-gunicorn_group_primary: ''     # Name of gunicorn user's primary group
-gunicorn_groups: []
 
 # Dictionary containing environment variables to launch gunicorn with
 gunicorn_environment: {}
