@@ -10,6 +10,7 @@ app_required_packages: []
 
 django_project: /opt/{{ app_name }}
 django_app_dir: "{{ django_project }}/{{ app_package }}"
+django_settings_module: "{{ app_package }}.settings"
 django_local_settings: "{{ django_app_dir }}/{{ app_package }}/local_settings.py"
 django_requirements: "{{ django_project }}/requirements.txt"
 
@@ -29,8 +30,6 @@ gunicorn_version: gunicorn
 
 gunicorn_user: gunicorn
 venv_owner: "{{ gunicorn_user }}"
-
-gunicorn_environment: {}
 
 gunicorn_service_conf: /etc/systemd/system/gunicorn.service
 gunicorn_socket_conf: /etc/systemd/system/gunicorn.socket

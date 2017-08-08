@@ -21,6 +21,7 @@
   django_manage:
     command: migrate
     app_path: "{{ django_app_dir }}"
+    settings: "{{ django_settings_module }}"
     virtualenv: "{{ venv }}"
   notify:
     - reload gunicorn
@@ -29,5 +30,6 @@
   django_manage:
     command: "{{ item }}"
     app_path: "{{ django_app_dir }}"
+    settings: "{{ django_settings_module }}"
     virtualenv: "{{ venv }}"
   with_items: "{{ django_manage_commands }}"
