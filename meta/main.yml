@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Chathan Driehuys
-  description: Configure a django app using Gunicorn.
+  description: Deploy a Django app using Gunicorn.
   license: MIT
 
   min_ansible_version: 1.2
