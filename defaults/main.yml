@@ -36,11 +36,12 @@ gunicorn_service_conf: /etc/systemd/system/gunicorn.service
 gunicorn_socket_conf: /etc/systemd/system/gunicorn.socket
 gunicorn_tempfile_conf: /etc/tmpfiles.d/gunicorn.conf
 
-gunicorn_bin: "{{ venv }}/bin/gunicorn"
-gunicorn_socket: "/run/gunicorn/socket"
-gunicorn_socket_unix: "unix:{{ gunicorn_socket }}"
-gunicorn_working_directory: "{{ django_app_dir }}"
-gunicorn_wsgi_app: "{{ app_package }}.wsgi:application"
-
 gunicorn_runtime_directory: gunicorn    # Relative to /run
 gunicorn_pid: /run/{{ gunicorn_runtime_directory }}/pid
+gunicorn_socket: /run/{{ gunicorn_runtime_directory }}/socket
+gunicorn_socket_unix: "unix:{{ gunicorn_socket }}"
+
+
+gunicorn_bin: "{{ venv }}/bin/gunicorn"
+gunicorn_working_directory: "{{ django_app_dir }}"
+gunicorn_wsgi_app: "{{ app_package }}.wsgi:application"
