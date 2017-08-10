@@ -5,8 +5,22 @@
     state: directory
     owner: "{{ gunicorn_user }}"
     mode: 0755
-    recurse: yes
   when: django_log_file != ''
+
+- name: Get log file information
+  stat:
+    path: "{{ django_log_file }}"
+  register: log_file_info
+  when: django_log_file != ''
+
+- name: Ensure log file exists
+  become: yes
+  file:
+    mode: 0644
+    owner: "{{ gunicorn_user }}"
+    path: "{{ django_log_file }}"
+    state: touch
+  when: django_log_file != '' and not log_file_info.stat.exists
 
 - name: Upload local settings
   template:
