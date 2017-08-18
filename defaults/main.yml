@@ -40,7 +40,8 @@ gunicorn_pid: /run/{{ gunicorn_runtime_directory }}/pid
 gunicorn_socket: /run/{{ gunicorn_runtime_directory }}/socket
 gunicorn_socket_unix: "unix:{{ gunicorn_socket }}"
 
-
 gunicorn_bin: "{{ venv }}/bin/gunicorn"
 gunicorn_working_directory: "{{ django_app_dir }}"
 gunicorn_wsgi_app: "{{ app_package }}.wsgi:application"
+
+gunicorn_environment: {}

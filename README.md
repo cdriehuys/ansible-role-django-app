@@ -193,6 +193,10 @@ gunicorn_working_directory: "{{ django_app_dir }}"
 # Path to the WSGI application to run, relative to
 # 'gunicorn_working_directory'.
 gunicorn_wsgi_app: "{{ app_package }}.wsgi:application"
+
+# Additional environment variables that the gunicorn process is run
+# with.
+gunicorn_environment: {}
 ```
 
 
