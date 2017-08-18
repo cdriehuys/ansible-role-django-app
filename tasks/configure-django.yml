@@ -32,6 +32,7 @@
     - reload gunicorn
 
 - name: Run migrations
+  environment: "{{ gunicorn_environment }}"
   django_manage:
     command: migrate
     app_path: "{{ django_app_dir }}"
@@ -41,6 +42,7 @@
     - reload gunicorn
 
 - name: Run additional manage.py tasks
+  environment: "{{ gunicorn_environment }}"
   django_manage:
     command: "{{ item }}"
     app_path: "{{ django_app_dir }}"
